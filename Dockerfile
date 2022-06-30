@@ -1,15 +1,19 @@
-# Pull an official base image
-FROM python:3.10.5-slim-bullseye
+# start by pulling the python image
+FROM python:3.8-alpine
 
-# Setting work directory
-WORKDIR /flask-app
+# copy the requirements file into the image
+COPY ./requirements.txt /app/requirements.txt
 
-# Install dependencies
-COPY ./requirements.txt /flask-app/requirements.txt
+# switch working directory
+WORKDIR /app
+
+# install the dependencies and packages in the requirements file
 RUN pip install -r requirements.txt
 
-# Copy src files
-COPY . /flask-app
+# copy every content from the local file to the image
+COPY . /app
 
-# Run Server
-CMD ["flask", "run", "--host=0.0.0.0"]
+# configure the container to run in an executed manner
+ENTRYPOINT [ "python" ]
+
+CMD ["app.py" ]
