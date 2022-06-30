@@ -11,7 +11,7 @@ agent any
                 echo 'testing file'
                 script {
                     try {
-                    sh 'python .\test.py'
+                    sh 'python test.py'
                     }
                     catch (err) {
                         echo err
