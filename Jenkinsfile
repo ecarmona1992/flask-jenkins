@@ -1,12 +1,9 @@
 pipeline { 
-agent
-{
-    dockerfile true
-}
+agent any
     stages { 
         stage ('Build') {
             steps {
-                sh 'docker build -t flask-app:latest .'
+                sh 'docker image build -t flask_docker .  '
             }
         }
         stage ('Test') {
