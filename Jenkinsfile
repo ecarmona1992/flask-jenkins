@@ -9,7 +9,7 @@ agent any
         stage ('Test') {
             steps {
                 echo 'testing file'
-                sh 'python3 test.py'
+                sh 'pytest test.py'
                 input(id: "Deploy Gate", message: "Deploy ${params.project_name}?", ok: 'Deploy')
             }
 
