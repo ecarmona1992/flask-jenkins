@@ -12,11 +12,13 @@ agent any
         stage ('Test') {
             steps {
                 echo 'testing file'
-                try {
+                steps {
+                    try {
                     sh 'python .\test.py'
-                }
-                catch (err) {
-                    echo err
+                    }
+                    catch (err) {
+                        echo err
+                    }
                 }
             }
 
