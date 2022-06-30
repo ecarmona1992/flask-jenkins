@@ -4,7 +4,6 @@ agent any
         stage ('Build') {
             steps {
                 sh 'docker image build -t flask_docker .  '
-                sh 'python3 -m venv venv'
             }
         }
         stage ('Test') {
