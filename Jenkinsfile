@@ -3,7 +3,6 @@ agent any
     stages { 
         stage ('Build') {
             steps {
-                sh 'sudo service docker start'
                 sh 'docker image build -t flask_docker .  '
             }
         }
