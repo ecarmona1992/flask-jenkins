@@ -1,22 +1,22 @@
 pipeline { 
 agent any
     stages { 
-        stage ('Build') {
+        stage ('Build docker') {
             steps {
-                sh 'docker image build -t flask_docker .  '
+                echo 'Finished cloning git repo'
             }
         }
-        stage ('Test') {
+        stage ('Testing docker container') {
             steps {
                 echo 'testing file'
                 sh "pip3 install -r requirements.txt"
                 sh 'python3 -m pytest test.py'
-                // input(id: "Deploy Gate", message: "Deploy ${params.project_name}?", ok: 'Deploy')
             }
 
         }
-        stage ('Deploy') {
+        stage ('Deploy new docker') {
             steps{
+                sh 'docker image build -t flask_docker .  '
                 echo 'Deployed'
             }
         }
