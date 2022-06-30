@@ -2,12 +2,10 @@ pipeline {
 agent any 
     stages { 
         stage ('Build') {
+            agent any
             steps {
-                echo 'Starting Build Phase'
-                sh 'docker image build -t flask_docker .'
-                echo 'Build Phase Completed'
-            } 
- 
+                sh 'docker build -t flask-app:latest .'
+            }
         }
         stage ('Test') {
             steps {
