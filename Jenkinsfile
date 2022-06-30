@@ -4,7 +4,6 @@ agent any
         stage ('Build') {
             steps {
                 echo 'Starting Build Phase'
-                sh 'cd flask-jenkins'
                 sh 'docker image build -t flask_docker .'
                 echo 'Build Phase Completed'
             } 
