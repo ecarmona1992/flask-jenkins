@@ -7,20 +7,20 @@ agent any
                 sh 'python3 -m venv venv'
             }
         }
-        stage ('Test') {
-            steps {
-                echo 'testing file'
-                script {
-                    try {
-                    sh 'python3 test.py'
-                    }
-                    catch (err) {
-                        echo err
-                    }
-                }
-            }
+        // stage ('Test') {
+        //     steps {
+        //         echo 'testing file'
+        //         script {
+        //             try {
+        //             sh 'python3 test.py'
+        //             }
+        //             catch (err) {
+        //                 echo err
+        //             }
+        //         }
+        //     }
 
-        }
+        // }
         stage ('Deploy') {
             steps{
                 sh 'docker run -p 5000:5000 -d flask_docker'
