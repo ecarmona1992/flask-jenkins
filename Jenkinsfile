@@ -9,7 +9,7 @@ agent any
         stage ('Test') {
             steps {
                 echo 'testing file'
-                sh "pip3 install -r requirements-dev.txt"
+                sh "pip3 install -r requirements.txt"
                 sh 'python 3 -m pytest test.py'
                 input(id: "Deploy Gate", message: "Deploy ${params.project_name}?", ok: 'Deploy')
             }
