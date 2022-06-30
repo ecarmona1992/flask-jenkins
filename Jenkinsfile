@@ -1,15 +1,32 @@
-pipeline {
-    agent any
-    stages {
-        stage('build') {
+pipeline { 
+agent any 
+    stages { 
+        stage ('Build') {
             steps {
-                sh 'pip install flask
-            }
+                echo
+                'Starting Build Phase'
+                sh 'docker image build -t flask_docker .'
+                echo
+                'Build Phase Completed'
+            } 
+ 
         }
-        stage('test') {
-            steps {
-                sh 'python test.py'
+        stage ('Test') { 
+            echo
+            'testing file'
+            try {
+                sh 'python .\test.py'
             }
+            catch (err) {
+                echo err
+            }
+
         }
-    }
-}
+        stage ('Deploy') { 
+            sh 'docker run -p 5000:5000 -d flask_docker'
+            echo
+            'Running on localhost:5000'
+        }
+ 
+    }           
+ }
