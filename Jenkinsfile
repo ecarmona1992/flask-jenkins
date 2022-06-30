@@ -12,7 +12,7 @@ agent any
         stage ('Test') {
             steps {
                 echo 'testing file'
-                steps {
+                script {
                     try {
                     sh 'python .\test.py'
                     }
