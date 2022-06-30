@@ -23,8 +23,7 @@ agent any
         // }
         stage ('Deploy') {
             steps{
-                sh 'docker run -p 5000:5000 -d flask_docker'
-                echo 'Running on localhost:5000'
+                echo 'Deployed'
             }
         }
  
