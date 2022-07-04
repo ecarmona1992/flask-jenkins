@@ -32,7 +32,7 @@ pipeline {
 
         stage('Test - Run Docker Container') {
            steps {
-            sh 'pytest -x test.py'
+            sh 'python3 -m pytest -x test.py'
           }
         }
 
