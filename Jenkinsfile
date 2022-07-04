@@ -20,7 +20,11 @@ pipeline {
 
         stage('Test - Run Docker Container') {
            steps {
-            sh 'python3 -m pytest -x test.py'
+            // Run venv
+                sh "python3 -m venv .venv"
+                // Run pip install
+                sh "pip3 install -r requirements.txt"
+                sh 'python3 -m pytest -x test.py'
           }
         }
         
