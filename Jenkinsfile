@@ -24,7 +24,7 @@ pipeline {
                 sh "python3 -m venv .venv"
                 // Run pip install
                 sh "pip3 install -r requirements.txt"
-                sh 'pytest -x test.py'
+                sh 'python3 -m pytest -x test.py'
           }
         }
         
