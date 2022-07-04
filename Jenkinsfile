@@ -17,6 +17,12 @@ pipeline {
                 sh "docker system prune -af"
             }
         }
+
+        stage('Test - Run Docker Container') {
+           steps {
+            sh 'python3 -m pytest -x test.py'
+          }
+        }
         
         stage('Build Image') {
             steps {
@@ -30,11 +36,11 @@ pipeline {
 
 
 
-        stage('Test - Run Docker Container') {
-           steps {
-            sh 'python3 -m pytest -x test.py'
-          }
-        }
+        // stage('Test - Run Docker Container') {
+        //    steps {
+        //     sh 'python3 -m pytest -x test.py'
+        //   }
+        // }
 
         stage('Push To DockerHub') {
             steps {
