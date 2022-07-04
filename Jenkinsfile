@@ -32,8 +32,7 @@ pipeline {
 
         stage('Test - Run Docker Container') {
            steps {
-
-                sh label: '', script: "docker run -d --name ${JOB_NAME} -p 5000:5000 ${img}"
+            sh 'pytest -x test.py'
           }
         }
 
