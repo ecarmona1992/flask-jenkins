@@ -18,16 +18,6 @@ pipeline {
             }
         }
 
-        stage('Test File') {
-           steps {
-                // Run venv
-                sh "python3 -m venv .venv"
-                // Run pip install
-                sh "pip3 install -r requirements.txt"
-                sh 'python3 -m pytest -x test.py'
-          }
-        }
-        
         stage('Build Image') {
             steps {
                 script {
@@ -36,6 +26,14 @@ pipeline {
                     dockerImage = docker.build("${img}")
                 }
             }
+        }
+
+        stage('Test File') {
+           steps {
+                // Run venv
+                sh "python3 -m venv .venv"
+                sh 'python3 -m pytest -x test.py'
+          }
         }
 
         stage('Push To DockerHub') {
