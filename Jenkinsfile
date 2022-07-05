@@ -33,13 +33,13 @@ pipeline {
                 // Run venv
                 echo 'Running test'
                 // sh "docker run -d -p 5000:5000 ${img}"
-                sh "docker run -d -p 5000:5000 ${img}"
+                sh "docker run -d --name project1 -p 5000:5000 ${img}"
           }
         }
 
         stage('stop container') {
            steps {
-            sh "docker stop ${img}"
+            sh "docker stop project1"
           }
         }
 
