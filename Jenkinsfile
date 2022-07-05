@@ -33,7 +33,7 @@ pipeline {
                 // Run venv
                 echo 'Running test'
                 // sh "python3 -m venv .venv"
-                // sh 'python3 -m pytest -x test.py'
+                sh 'python3 -m pytest -x test.py'
           }
         }
 
