@@ -15,14 +15,14 @@ pipeline {
                 echo 'Finshed downloading git'
                 // force stop docker and clean up images
                 sh "docker system prune -af"
-                sh 'python3 test.py'
             }
         }
 
         stage('Build Image') {
             steps {
                 script {
-                    img = registry + ":${env.BUILD_ID}"
+                    // img = registry + ":${env.BUILD_ID}"
+                    img = registry + "test"
                     println ("${img}")
                     dockerImage = docker.build("${img}")
                 }
@@ -33,7 +33,9 @@ pipeline {
            steps {
                 // Run venv
                 echo 'Running test'
+                sh 'docker run -p 5000:5000 test'
                 // sh "python3 -m venv .venv"
+                // sh 'python3 test.py'
           }
         }
 
