@@ -33,7 +33,7 @@ pipeline {
            steps {
                 // Run venv
                 echo 'Running test'
-                sh 'docker run -p 5000:5000 ecarmona1992/project1test'
+                sh "docker run -p 5000:5000 ${img}"
                 // sh "python3 -m venv .venv"
                 // sh 'python3 test.py'
           }
