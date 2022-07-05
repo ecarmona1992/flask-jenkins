@@ -15,6 +15,7 @@ pipeline {
                 echo 'Finshed downloading git'
                 // force stop docker and clean up images
                 sh "docker system prune -af"
+                sh 'python3 test.py'
             }
         }
 
@@ -33,7 +34,6 @@ pipeline {
                 // Run venv
                 echo 'Running test'
                 // sh "python3 -m venv .venv"
-                sh 'python3 test.py'
           }
         }
 
