@@ -15,8 +15,6 @@ pipeline {
                 echo 'Finshed downloading git'
                 // force stop docker and clean up images
                 sh "docker system prune -af"
-                // stop all running containers
-                sh "docker kill "$(docker ps -q)""
             }
         }
 
@@ -25,7 +23,6 @@ pipeline {
                 script {
                     // img = registry + ":${env.BUILD_ID}"
                     img = registry + ":${env.BUILD_ID}"
-                    println ("${img}")
                     dockerImage = docker.build("${img}")
                 }
             }
@@ -36,9 +33,16 @@ pipeline {
                 // Run venv
                 echo 'Running test'
                 // sh "docker run -d -p 5000:5000 ${img}"
-                sh "docker run -d --name ${JOB_NAME} -p 5000:5000 ${img}"
+                sh "docker run -d -p 5000:5000 ${img}"
           }
         }
+
+        stage('stop container') {
+           steps {
+            sh "docker stop ${img}"
+          }
+        }
+
 
         stage('Push To DockerHub') {
             steps {
