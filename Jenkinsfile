@@ -15,6 +15,8 @@ pipeline {
                 echo 'Finshed downloading git'
                 // force stop docker and clean up images
                 sh "docker system prune -af"
+                // stop all running containers
+                sh "docker kill $(docker ps -q)"
             }
         }
 
