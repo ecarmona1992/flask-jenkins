@@ -33,15 +33,14 @@ pipeline {
             }
         }
 
-        stage('Run Docker') {
-           steps {
-                // Run venv
-                echo 'Running test'
-                // sh "docker run -d -p 5000:5000 ${img}"
-                sh "docker run -d --name project1 -p 5000:5000 ${img}"
-                sh "curl localhost:5000"
-          }
-        }
+        // stage('Run Docker') {
+        //    steps {
+        //         // Run venv
+        //         echo 'Running test'
+        //         // sh "docker run -d -p 5000:5000 ${img}"
+        //         sh "docker run -d --name project1 -p 5000:5000 ${img}"
+        //   }
+        // }
 
 
         stage('Push To DockerHub') {
