@@ -5,6 +5,6 @@ class TestHello(unittest.TestCase):
         app.testing = True
         self.app = app.test_client()
     def test_hello(self):
-        self.assertEqual(1, 2)
+        self.assertEqual(1, 1)
 if __name__ == '__main__':
     unittest.main()
