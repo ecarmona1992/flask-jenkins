@@ -50,7 +50,8 @@ pipeline {
 // send email notification once everything completes
     post {
         always {
-            step([$class: 'Mailer', notifyEveryUnstableBuild: true, recipients: 'emanuelcarmona714@gmail.com', sendToIndividuals: true])
+            step([$class: 'Mailer', notifyEveryUnstableBuild: true,
+                recipients: 'emanuelcarmona714@gmail.com'])
         }
     }
 }
