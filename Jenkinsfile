@@ -11,11 +11,16 @@ pipeline {
     stages {
         stage('download') {
             steps {
-                git 'https://github.com/ecarmona1992/SimpleFlaskUI.git'
+                git 'https://github.com/ecarmona1992/flask-jenkins'
                 echo 'Finshed downloading git'
                 sh "docker stop project1"
                 // force stop docker and clean up images
                 sh "docker system prune -af"
+            }
+        }
+        stage('testing') {
+            steps {
+                sh "python3 test.py"
             }
         }
 
@@ -29,20 +34,15 @@ pipeline {
             }
         }
 
-        stage('Test File') {
+        stage('Run Docker') {
            steps {
                 // Run venv
                 echo 'Running test'
                 // sh "docker run -d -p 5000:5000 ${img}"
                 sh "docker run -d --name project1 -p 5000:5000 ${img}"
+                sh "curl localhost:5000"
           }
         }
-
-        // stage('stop container') {
-        //    steps {
-        //     sh "docker stop project1"
-        //   }
-        // }
 
 
         stage('Push To DockerHub') {
