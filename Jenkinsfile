@@ -27,7 +27,7 @@ pipeline {
             steps {
                 script {
                     // reference: https://www.jenkins.io/doc/book/pipeline/jenkinsfile/
-                    img = registry + "project1:${env.BUILD_ID}"
+                    img = registry + ":${env.BUILD_ID}"
                     // reference: https://docs.cloudbees.com/docs/admin-resources/latest/plugins/docker-workflow
                     dockerImage = docker.build("${img}")
                 }
@@ -50,7 +50,7 @@ pipeline {
 // send email notification once everything completes
     post {
         always {
-            emailext body: 'Build Successful! please check hub: https://hub.docker.com/repository/docker/ecarmona1992/project1', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
+            step([$class: 'Mailer', notifyEveryUnstableBuild: true, recipients: 'emanuelcarmona714@gmail.com', sendToIndividuals: true])
         }
     }
 }
