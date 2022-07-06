@@ -26,22 +26,12 @@ pipeline {
         stage('Build Image') {
             steps {
                 script {
-                    // img = registry + ":${env.BUILD_ID}"
-                    img = registry + ":${env.BUILD_ID}"
+                    // reference: https://www.jenkins.io/doc/book/pipeline/jenkinsfile/
+                    img = registry + ":Project1${env.BUILD_ID}"
                     dockerImage = docker.build("${img}")
                 }
             }
         }
-
-        // stage('Run Docker') {
-        //    steps {
-        //         // Run venv
-        //         echo 'Running test'
-        //         // sh "docker run -d -p 5000:5000 ${img}"
-        //         sh "docker run -d --name project1 -p 5000:5000 ${img}"
-        //   }
-        // }
-
 
         stage('Push To DockerHub') {
             steps {
