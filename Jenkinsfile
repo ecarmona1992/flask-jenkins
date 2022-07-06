@@ -38,6 +38,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry( 'https://registry.hub.docker.com ', registryCredential ) {
+                        // push image to registry
                         dockerImage.push()
                     }
                 }
@@ -46,9 +47,10 @@ pipeline {
 
     }
 
+// send email notification once everything completes
     post {
         always {
-            emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
+            emailext body: 'Build Successful! please check hub: https://hub.docker.com/repository/docker/ecarmona1992/project1', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Test'
         }
     }
 }
