@@ -3,7 +3,7 @@ app = Flask(__name__)
 import os
 @app.route('/')
 def hello():
-    return 'hello Hopefully this works!\n'
+    return 'This is a new change that gets added to kubernetes\n'
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(debug=True, host='0.0.0.0', port=port)
